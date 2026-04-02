@@ -1,15 +1,18 @@
 # Fortress X-COM
 #
-# Base defense overhaul with four pillars:
+# Base defense overhaul with five pillars:
 # 1. Earlier alien retaliations (month 3+ on all difficulties)
 # 2. Cheaper-but-weaker base defenses (50% build cost, -10% hit ratio)
 # 3. Expensive hangars (3x build cost, 2x maintenance)
 # 4. Defense upgrade tree — Grav Shield unlocks "hardened" variants of every defense
+# 5. New specialized facilities gated by base infrastructure investment
 #
 # The Grav Shield is the linchpin: cheap enough to build early, and it
 # unlocks hardened defenses with +30% defense value and +5% hit ratio.
 # Players who invest in base defense infrastructure are rewarded with
 # facilities that vanilla doesn't offer.
+#
+# Requires OXCE 7.0+ for provideBaseFunc/requiresBaseFunc support.
 
 # ============================================================
 # PILLAR 1: Earlier Retaliations
@@ -112,31 +115,48 @@ missionScripts:
 # ============================================================
 
 facilities:
+  # --- Vanilla infrastructure: add provideBaseFunc tags for gating ---
+
+  - type: STR_LIVING_QUARTERS
+    provideBaseFunc: [QUARTERS]
+
+  - type: STR_LABORATORY
+    provideBaseFunc: [LAB]
+
+  - type: STR_WORKSHOP
+    provideBaseFunc: [WORKSHOP]
+
+  - type: STR_ALIEN_CONTAINMENT
+    provideBaseFunc: [CONTAINMENT]
+
+  - type: STR_PSIONIC_LABORATORY
+    provideBaseFunc: [PSI_LAB]
+
   # --- Vanilla defense overrides (cheaper build, weaker hit ratio) ---
 
   - type: STR_MISSILE_DEFENSES
     buildCost: 100000
     defense: 500
     hitRatio: 40
-    provideBaseFunc: [MISSILE_DEF]
+    provideBaseFunc: [MISSILE_DEF, BASIC_DEFENSE]
 
   - type: STR_LASER_DEFENSES
     buildCost: 200000
     defense: 600
     hitRatio: 50
-    provideBaseFunc: [LASER_DEF]
+    provideBaseFunc: [LASER_DEF, BASIC_DEFENSE]
 
   - type: STR_PLASMA_DEFENSES
     buildCost: 300000
     defense: 900
     hitRatio: 60
-    provideBaseFunc: [PLASMA_DEF]
+    provideBaseFunc: [PLASMA_DEF, BASIC_DEFENSE]
 
   - type: STR_FUSION_BALL_DEFENSES
     buildCost: 400000
     defense: 1200
     hitRatio: 70
-    provideBaseFunc: [FUSION_DEF]
+    provideBaseFunc: [FUSION_DEF, BASIC_DEFENSE]
 
   # --- Grav Shield: cheaper, faster to build, provides the upgrade key ---
 
@@ -146,12 +166,13 @@ facilities:
     monthlyCost: 15000
     provideBaseFunc: [GRAV_SHIELD]
 
-  # --- Mind Shield: cheaper to encourage base defense investment ---
+  # --- Mind Shield: cheaper, provides MIND_SHIELD for gating ---
 
   - type: STR_MIND_SHIELD
     buildCost: 500000
     buildTime: 20
     monthlyCost: 5000
+    provideBaseFunc: [MIND_SHIELD]
 
   # --- Expensive Hangars ---
 
@@ -168,6 +189,7 @@ facilities:
 
   - type: STR_HARDENED_MISSILE_DEFENSE
     requiresBaseFunc: [MISSILE_DEF, GRAV_SHIELD]
+    provideBaseFunc: [HARDENED_DEF]
     spriteShape: 2
     spriteFacility: 23
     buildCost: 250000
@@ -179,6 +201,7 @@ facilities:
 
   - type: STR_HARDENED_LASER_DEFENSE
     requiresBaseFunc: [LASER_DEF, GRAV_SHIELD]
+    provideBaseFunc: [HARDENED_DEF]
     spriteShape: 2
     spriteFacility: 24
     buildCost: 450000
@@ -190,6 +213,7 @@ facilities:
 
   - type: STR_HARDENED_PLASMA_DEFENSE
     requiresBaseFunc: [PLASMA_DEF, GRAV_SHIELD]
+    provideBaseFunc: [HARDENED_DEF]
     spriteShape: 2
     spriteFacility: 25
     buildCost: 650000
@@ -201,6 +225,7 @@ facilities:
 
   - type: STR_HARDENED_FUSION_DEFENSE
     requiresBaseFunc: [FUSION_DEF, GRAV_SHIELD]
+    provideBaseFunc: [HARDENED_DEF]
     spriteShape: 2
     spriteFacility: 26
     buildCost: 850000
@@ -210,6 +235,116 @@ facilities:
     hitRatio: 85
     mapName: XBASE_16
 
+  # ============================================================
+  # PILLAR 5: Specialized Facilities
+  # New facilities gated by base infrastructure investment.
+  # Three tiers: Early (no prereqs), Mid (1-2 prereqs), Late (heavy prereqs + materials)
+  # ============================================================
+
+  # --- TIER A: Early Game ---
+
+  - type: STR_TRAINING_BARRACKS
+    spriteShape: 1
+    spriteFacility: 1
+    buildCost: 300000
+    buildTime: 14
+    monthlyCost: 8000
+    personnel: 20
+    trainingRooms: 10
+    mapName: XBASE_01
+
+  - type: STR_FIELD_HOSPITAL
+    requiresBaseFunc: [QUARTERS]
+    spriteShape: 1
+    spriteFacility: 6
+    buildCost: 500000
+    buildTime: 20
+    monthlyCost: 20000
+    sickBayAbsoluteBonus: 1.0
+    sickBayRelativeBonus: 0.5
+    mapName: XBASE_07
+
+  # --- TIER B: Mid Game ---
+
+  - type: STR_AMMUNITION_DEPOT
+    requiresBaseFunc: [WORKSHOP]
+    provideBaseFunc: [AMMO_DEPOT]
+    spriteShape: 1
+    spriteFacility: 5
+    buildCost: 350000
+    buildTime: 16
+    monthlyCost: 12000
+    storage: 75
+    buildCostItems:
+      STR_ALIEN_ALLOYS:
+        build: 5
+        refund: 2
+    mapName: XBASE_05
+
+  - type: STR_COMMAND_BUNKER
+    requiresBaseFunc: [BASIC_DEFENSE, MIND_SHIELD]
+    spriteShape: 1
+    spriteFacility: 9
+    buildCost: 800000
+    buildTime: 30
+    monthlyCost: 25000
+    defense: 200
+    hitRatio: 0
+    maxAllowedPerBase: 1
+    mapName: XBASE_09
+
+  - type: STR_INTERROGATION_WING
+    requiresBaseFunc: [CONTAINMENT, LAB]
+    spriteShape: 1
+    spriteFacility: 8
+    buildCost: 600000
+    buildTime: 22
+    monthlyCost: 20000
+    aliens: 15
+    prisonType: 1
+    buildCostItems:
+      STR_ALIEN_ALLOYS:
+        build: 10
+        refund: 4
+    mapName: XBASE_08
+
+  # --- TIER C: Late Game ---
+
+  - type: STR_FORTRESS_SHIELD_GENERATOR
+    requiresBaseFunc: [GRAV_SHIELD, HARDENED_DEF]
+    spriteShape: 2
+    spriteFacility: 12
+    buildCost: 2000000
+    buildTime: 45
+    monthlyCost: 40000
+    defense: 500
+    hitRatio: 0
+    missileAttraction: 500
+    maxAllowedPerBase: 1
+    buildCostItems:
+      STR_ELERIUM_115:
+        build: 30
+        refund: 10
+      STR_ALIEN_ALLOYS:
+        build: 50
+        refund: 20
+    mapName: XBASE_12
+
+  - type: STR_PSI_DEFENSE_ARRAY
+    requiresBaseFunc: [MIND_SHIELD, PSI_LAB]
+    spriteShape: 1
+    spriteFacility: 10
+    buildCost: 1200000
+    buildTime: 30
+    monthlyCost: 25000
+    mindPower: 200
+    maxAllowedPerBase: 1
+    buildCostItems:
+      STR_ELERIUM_115:
+        build: 15
+        refund: 5
+    mapName: XBASE_10
+
 # ============================================================
 # Display names for new facilities
 # ============================================================
@@ -217,6 +352,7 @@ facilities:
 extraStrings:
   - type: en-US
     strings:
+      # Hardened defenses
       STR_HARDENED_MISSILE_DEFENSE: "Hardened Missile Defense"
       STR_HARDENED_MISSILE_DEFENSE_UFOPEDIA: "A reinforced missile defense battery protected by gravitational shielding. Higher damage output and improved targeting over the standard installation."
       STR_HARDENED_LASER_DEFENSE: "Hardened Laser Defense"
@@ -225,6 +361,24 @@ extraStrings:
       STR_HARDENED_PLASMA_DEFENSE_UFOPEDIA: "Plasma defense battery enhanced with gravitational focusing. Devastating firepower with high accuracy."
       STR_HARDENED_FUSION_DEFENSE: "Hardened Fusion Defense"
       STR_HARDENED_FUSION_DEFENSE_UFOPEDIA: "The ultimate base defense installation. Fusion warheads guided by grav-lens targeting systems. Few UFOs survive a direct hit."
+      # Tier A: Early game
+      STR_TRAINING_BARRACKS: "Training Barracks"
+      STR_TRAINING_BARRACKS_UFOPEDIA: "A dedicated military training facility. Soldiers stationed here improve their skills between missions. Smaller than standard living quarters but includes a gym, firing range, and tactical simulation room."
+      STR_FIELD_HOSPITAL: "Field Hospital"
+      STR_FIELD_HOSPITAL_UFOPEDIA: "A medical facility equipped for rapid treatment of combat injuries. Soldiers recover from wounds significantly faster. Requires living quarters in the base to house recovering patients."
+      # Tier B: Mid game
+      STR_AMMUNITION_DEPOT: "Ammunition Depot"
+      STR_AMMUNITION_DEPOT_UFOPEDIA: "A reinforced storage facility designed for ordnance and defense supplies. Provides additional storage capacity and enables the base to support sustained defensive operations. Requires alien alloys for blast-resistant construction."
+      STR_COMMAND_BUNKER: "Command Bunker"
+      STR_COMMAND_BUNKER_UFOPEDIA: "A hardened command center that coordinates base defense operations. Provides a passive defense bonus by improving response times and tactical coordination during alien assaults. Only one per base."
+      STR_INTERROGATION_WING: "Interrogation Wing"
+      STR_INTERROGATION_WING_UFOPEDIA: "An advanced alien containment facility with expanded holding capacity and specialized interrogation chambers. Requires both standard containment and laboratory facilities to operate."
+      # Tier C: Late game
+      STR_FORTRESS_SHIELD_GENERATOR: "Fortress Shield Generator"
+      STR_FORTRESS_SHIELD_GENERATOR_UFOPEDIA: "The crown jewel of base defense. Generates a massive energy shield that absorbs incoming fire and draws enemy weapons away from critical facilities. Requires gravitational shielding technology and hardened defense infrastructure. Extremely expensive to construct — demands large quantities of elerium and alien alloys."
+      STR_PSI_DEFENSE_ARRAY: "Psi-Defense Array"
+      STR_PSI_DEFENSE_ARRAY_UFOPEDIA: "A network of psionic amplifiers that projects a powerful psychic barrier across the entire base. Far more effective than a standard Mind Shield, this facility can disrupt even Ethereal-level psionic attacks. Requires both mind shielding and psionic laboratory technology."
+      # Mission scripts
       STR_RETALIATION_BEGINNER: "Alien Retaliation"
       STR_RETALIATION_EXPERIENCED: "Alien Retaliation"
       STR_RETALIATION_VETERAN: "Alien Retaliation"

@@ -36,7 +36,7 @@ A fully kitted Heavy Plasma soldier costs ~1M credits. Early-game monthly fundin
 
 __Type:__ Base Defense | __Game:__ UFO Defense | __Requires:__ OXCE 7.0+
 
-Base defense overhaul — makes base layout a strategic decision from month 3. Four pillars:
+Base defense overhaul — makes base layout a strategic decision from month 3. Five pillars:
 
 __1. Earlier retaliations:__ Alien retaliations start at month 3 on all difficulties (vanilla: month 10-14). You need defenses early.
 
@@ -53,7 +53,19 @@ __4. Defense upgrade tree:__ The Grav Shield (cheapened to 400K, build time halv
 | Plasma (def: 900, hit: 60%) | Hardened Plasma (def: 1170, hit: 75%) | +30% def, +15% hit |
 | Fusion (def: 1200, hit: 70%) | Hardened Fusion (def: 1560, hit: 85%) | +30% def, +15% hit |
 
-The Grav Shield is the __linchpin__ — in vanilla it's a luxury, here it's the gateway to serious base defense.
+__5. Specialized facilities:__ 7 new facilities gated by base infrastructure investment:
+
+| Facility | Tier | Requires | Key Stats |
+|----------|------|----------|-----------|
+| Training Barracks | Early | — | 10 training slots, 20 personnel |
+| Field Hospital | Early | Living Quarters | Faster wound recovery (+1.0 abs, +0.5 rel) |
+| Ammunition Depot | Mid | Workshop | 75 storage, costs 5 alien alloys |
+| Command Bunker | Mid | Any defense + Mind Shield | +200 passive defense, 1 per base |
+| Interrogation Wing | Mid | Containment + Lab | 15 alien capacity, costs 10 alloys |
+| Fortress Shield Generator | Late | Grav Shield + hardened defense | +500 defense, draws enemy fire, costs 30 elerium + 50 alloys |
+| Psi-Defense Array | Late | Mind Shield + Psi Lab | 200 mind power, costs 15 elerium |
+
+The Grav Shield is the __linchpin__ — in vanilla it's a luxury, here it's the gateway to serious base defense. Combined with the new facility tree, base building becomes a genuine strategic puzzle.
 
 > Folder: [`fortress-xcom/`](fortress-xcom/)
 
