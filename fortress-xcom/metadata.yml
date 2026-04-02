@@ -1,0 +1,6 @@
+name: "Fortress X-COM"
+version: "1.0"
+description: "Base defense overhaul — earlier alien retaliations, layered defense upgrades gated by Grav Shield, expensive hangars. Makes base layout a strategic decision."
+author: "ModGen"
+master: xcom1
+requiredExtendedVersion: "7.0"

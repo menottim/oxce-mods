@@ -6,6 +6,7 @@ A collection of mods for [OpenXcom Extended (OXCE)](https://github.com/MeridianO
 
 - [Mods](#mods)
   - [Black Market](#black-market)
+  - [Fortress X-COM](#fortress-x-com)
 - [Installation](#installation)
 - [About](#about)
 
@@ -28,6 +29,33 @@ Alien weapons, materials, and artifacts available for purchase at steep black ma
 A fully kitted Heavy Plasma soldier costs ~1M credits. Early-game monthly funding is ~500K. You __can__ buy alien tech, but it's "mortgage the base" money.
 
 > Folder: [`black-market/`](black-market/)
+
+---
+
+### Fortress X-COM
+
+__Type:__ Base Defense | __Game:__ UFO Defense | __Requires:__ OXCE 7.0+
+
+Base defense overhaul — makes base layout a strategic decision from month 3. Four pillars:
+
+__1. Earlier retaliations:__ Alien retaliations start at month 3 on all difficulties (vanilla: month 10-14). You need defenses early.
+
+__2. Cheaper-but-weaker defenses:__ All defense facilities cost 50% less to build, but hit ratio is reduced by 10 points. You need more of them — layering matters.
+
+__3. Expensive hangars:__ Build cost tripled (200K → 600K), maintenance doubled (25K → 50K). Forces hard choices between interception capacity and base defense.
+
+__4. Defense upgrade tree:__ The Grav Shield (cheapened to 400K, build time halved) unlocks __hardened__ variants of every defense facility:
+
+| Base Defense | Hardened (requires Grav Shield) | Improvement |
+|-------------|-------------------------------|-------------|
+| Missile (def: 500, hit: 40%) | Hardened Missile (def: 650, hit: 55%) | +30% def, +15% hit |
+| Laser (def: 600, hit: 50%) | Hardened Laser (def: 780, hit: 65%) | +30% def, +15% hit |
+| Plasma (def: 900, hit: 60%) | Hardened Plasma (def: 1170, hit: 75%) | +30% def, +15% hit |
+| Fusion (def: 1200, hit: 70%) | Hardened Fusion (def: 1560, hit: 85%) | +30% def, +15% hit |
+
+The Grav Shield is the __linchpin__ — in vanilla it's a luxury, here it's the gateway to serious base defense.
+
+> Folder: [`fortress-xcom/`](fortress-xcom/)
 
 ## Installation
 

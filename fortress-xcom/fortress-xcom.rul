@@ -1,0 +1,230 @@
+# Fortress X-COM
+#
+# Base defense overhaul with four pillars:
+# 1. Earlier alien retaliations (month 3+ on all difficulties)
+# 2. Cheaper-but-weaker base defenses (50% build cost, -10% hit ratio)
+# 3. Expensive hangars (3x build cost, 2x maintenance)
+# 4. Defense upgrade tree — Grav Shield unlocks "hardened" variants of every defense
+#
+# The Grav Shield is the linchpin: cheap enough to build early, and it
+# unlocks hardened defenses with +30% defense value and +5% hit ratio.
+# Players who invest in base defense infrastructure are rewarded with
+# facilities that vanilla doesn't offer.
+
+# ============================================================
+# PILLAR 1: Earlier Retaliations
+# Vanilla: retaliations start month 10-14 depending on difficulty
+# Modded: start month 3 on all difficulties
+# ============================================================
+
+missionScripts:
+  # Override vanilla retaliation timings — all difficulties start month 3
+  - type: STR_RETALIATION_BEGINNER
+    firstMonth: 3
+    missionWeights:
+      0:
+        STR_ALIEN_RETALIATION: 100
+    raceWeights:
+      0:
+        STR_SECTOID: 30
+        STR_FLOATER: 30
+        STR_SNAKEMAN: 20
+        STR_MUTON: 20
+    regionWeights:
+      0:
+        STR_NORTH_AMERICA: 20
+        STR_EUROPE: 20
+        STR_SOUTH_AMERICA: 15
+        STR_NORTH_AFRICA: 15
+        STR_SOUTHERN_AFRICA: 10
+        STR_CENTRAL_ASIA: 10
+        STR_SOUTH_EAST_ASIA: 5
+        STR_AUSTRALASIA: 5
+    targetBaseOdds: 100
+    startDelay: 150
+    executionOdds: 40
+    label: 10
+
+  - type: STR_RETALIATION_EXPERIENCED
+    firstMonth: 3
+    minDifficulty: 1
+    missionWeights:
+      0:
+        STR_ALIEN_RETALIATION: 100
+    raceWeights:
+      0:
+        STR_SECTOID: 20
+        STR_FLOATER: 20
+        STR_SNAKEMAN: 20
+        STR_MUTON: 20
+        STR_ETHEREAL: 20
+    regionWeights:
+      0:
+        STR_NORTH_AMERICA: 20
+        STR_EUROPE: 20
+        STR_SOUTH_AMERICA: 15
+        STR_NORTH_AFRICA: 15
+        STR_SOUTHERN_AFRICA: 10
+        STR_CENTRAL_ASIA: 10
+        STR_SOUTH_EAST_ASIA: 5
+        STR_AUSTRALASIA: 5
+    targetBaseOdds: 100
+    startDelay: 150
+    executionOdds: 50
+    conditionals: [-10]
+    label: 11
+
+  - type: STR_RETALIATION_VETERAN
+    firstMonth: 3
+    minDifficulty: 2
+    missionWeights:
+      0:
+        STR_ALIEN_RETALIATION: 100
+    raceWeights:
+      0:
+        STR_SNAKEMAN: 25
+        STR_MUTON: 35
+        STR_ETHEREAL: 40
+    regionWeights:
+      0:
+        STR_NORTH_AMERICA: 20
+        STR_EUROPE: 20
+        STR_SOUTH_AMERICA: 15
+        STR_NORTH_AFRICA: 15
+        STR_SOUTHERN_AFRICA: 10
+        STR_CENTRAL_ASIA: 10
+        STR_SOUTH_EAST_ASIA: 5
+        STR_AUSTRALASIA: 5
+    targetBaseOdds: 100
+    startDelay: 150
+    executionOdds: 60
+    conditionals: [-10, -11]
+    label: 12
+
+# ============================================================
+# PILLAR 2: Cheaper-but-Weaker Defenses
+# Build cost halved, hit ratio reduced by 10 points.
+# You need MORE defenses to be effective — encouraging layering.
+#
+# PILLAR 3: Expensive Hangars
+# Build cost 3x, monthly cost 2x.
+# Forces hard choices between interception capacity and defense.
+# ============================================================
+
+facilities:
+  # --- Vanilla defense overrides (cheaper build, weaker hit ratio) ---
+
+  - type: STR_MISSILE_DEFENSES
+    buildCost: 100000
+    defense: 500
+    hitRatio: 40
+    provideBaseFunc: [MISSILE_DEF]
+
+  - type: STR_LASER_DEFENSES
+    buildCost: 200000
+    defense: 600
+    hitRatio: 50
+    provideBaseFunc: [LASER_DEF]
+
+  - type: STR_PLASMA_DEFENSES
+    buildCost: 300000
+    defense: 900
+    hitRatio: 60
+    provideBaseFunc: [PLASMA_DEF]
+
+  - type: STR_FUSION_BALL_DEFENSES
+    buildCost: 400000
+    defense: 1200
+    hitRatio: 70
+    provideBaseFunc: [FUSION_DEF]
+
+  # --- Grav Shield: cheaper, faster to build, provides the upgrade key ---
+
+  - type: STR_GRAV_SHIELD
+    buildCost: 400000
+    buildTime: 18
+    monthlyCost: 15000
+    provideBaseFunc: [GRAV_SHIELD]
+
+  # --- Mind Shield: cheaper to encourage base defense investment ---
+
+  - type: STR_MIND_SHIELD
+    buildCost: 500000
+    buildTime: 20
+    monthlyCost: 5000
+
+  # --- Expensive Hangars ---
+
+  - type: STR_HANGAR
+    buildCost: 600000
+    monthlyCost: 50000
+
+  # ============================================================
+  # PILLAR 4: Hardened Defense Upgrades
+  # Requires Grav Shield + the base-tier defense in the base.
+  # +30% defense value, +5% hit ratio over base tier.
+  # Reuses the sprite of the next-tier vanilla defense.
+  # ============================================================
+
+  - type: STR_HARDENED_MISSILE_DEFENSE
+    requiresBaseFunc: [MISSILE_DEF, GRAV_SHIELD]
+    spriteShape: 2
+    spriteFacility: 23
+    buildCost: 250000
+    buildTime: 20
+    monthlyCost: 8000
+    defense: 650
+    hitRatio: 55
+    mapName: XBASE_13
+
+  - type: STR_HARDENED_LASER_DEFENSE
+    requiresBaseFunc: [LASER_DEF, GRAV_SHIELD]
+    spriteShape: 2
+    spriteFacility: 24
+    buildCost: 450000
+    buildTime: 28
+    monthlyCost: 14000
+    defense: 780
+    hitRatio: 65
+    mapName: XBASE_14
+
+  - type: STR_HARDENED_PLASMA_DEFENSE
+    requiresBaseFunc: [PLASMA_DEF, GRAV_SHIELD]
+    spriteShape: 2
+    spriteFacility: 25
+    buildCost: 650000
+    buildTime: 36
+    monthlyCost: 16000
+    defense: 1170
+    hitRatio: 75
+    mapName: XBASE_15
+
+  - type: STR_HARDENED_FUSION_DEFENSE
+    requiresBaseFunc: [FUSION_DEF, GRAV_SHIELD]
+    spriteShape: 2
+    spriteFacility: 26
+    buildCost: 850000
+    buildTime: 38
+    monthlyCost: 18000
+    defense: 1560
+    hitRatio: 85
+    mapName: XBASE_16
+
+# ============================================================
+# Display names for new facilities
+# ============================================================
+
+extraStrings:
+  - type: en-US
+    strings:
+      STR_HARDENED_MISSILE_DEFENSE: "Hardened Missile Defense"
+      STR_HARDENED_MISSILE_DEFENSE_UFOPEDIA: "A reinforced missile defense battery protected by gravitational shielding. Higher damage output and improved targeting over the standard installation."
+      STR_HARDENED_LASER_DEFENSE: "Hardened Laser Defense"
+      STR_HARDENED_LASER_DEFENSE_UFOPEDIA: "An upgraded laser defense turret with grav-stabilized targeting. Delivers more consistent hits against incoming UFOs."
+      STR_HARDENED_PLASMA_DEFENSE: "Hardened Plasma Defense"
+      STR_HARDENED_PLASMA_DEFENSE_UFOPEDIA: "Plasma defense battery enhanced with gravitational focusing. Devastating firepower with high accuracy."
+      STR_HARDENED_FUSION_DEFENSE: "Hardened Fusion Defense"
+      STR_HARDENED_FUSION_DEFENSE_UFOPEDIA: "The ultimate base defense installation. Fusion warheads guided by grav-lens targeting systems. Few UFOs survive a direct hit."
+      STR_RETALIATION_BEGINNER: "Alien Retaliation"
+      STR_RETALIATION_EXPERIENCED: "Alien Retaliation"
+      STR_RETALIATION_VETERAN: "Alien Retaliation"
