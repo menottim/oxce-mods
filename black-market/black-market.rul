@@ -1,0 +1,98 @@
+# Black Market Mod
+# Adds costBuy to all alien weapons, materials, and artifacts.
+# Pricing: 5x costSell for weapons/equipment, 8x for strategic materials.
+# You can now BUY alien tech — but at punishing prices.
+#
+# Design rationale:
+#   - Weapons at 5x sell price: expensive shortcut, not a replacement for research
+#   - Clips at 5x: recurring ammo cost creates sustained budget pressure
+#   - Materials at 8x: elerium and alloys are strategically critical, price accordingly
+#   - UFO components at 8x: these are the big-ticket items that fund your operations
+#   - Psi/mind gear at 5x: powerful but requires psi training anyway
+#   - Research artifacts at 3x: cheaper because they're only useful for research
+#
+# Example: buying a Heavy Plasma (858,000) + 3 clips (143,850) = ~1M credits.
+# That's roughly 2 months of early-game funding for ONE soldier's loadout.
+
+items:
+  # === Alien Weapons (5x costSell) ===
+
+  - type: STR_PLASMA_PISTOL
+    costBuy: 420000
+
+  - type: STR_PLASMA_PISTOL_CLIP
+    costBuy: 22200
+
+  - type: STR_PLASMA_RIFLE
+    costBuy: 632500
+
+  - type: STR_PLASMA_RIFLE_CLIP
+    costBuy: 31450
+
+  - type: STR_HEAVY_PLASMA
+    costBuy: 858000
+
+  - type: STR_HEAVY_PLASMA_CLIP
+    costBuy: 47950
+
+  - type: STR_ALIEN_GRENADE
+    costBuy: 74250
+
+  - type: STR_SMALL_LAUNCHER
+    costBuy: 600000
+
+  - type: STR_STUN_BOMB
+    costBuy: 76000
+
+  - type: STR_BLASTER_LAUNCHER
+    costBuy: 720000
+
+  - type: STR_BLASTER_BOMB
+    costBuy: 85140
+
+  # === Psi/Recon Equipment (5x costSell) ===
+
+  - type: STR_MIND_PROBE
+    costBuy: 1520000
+
+  - type: STR_PSI_AMP
+    costBuy: 973500
+
+  # === Strategic Materials (8x costSell) ===
+
+  - type: STR_ALIEN_ALLOYS
+    costBuy: 52000
+
+  - type: STR_ELERIUM_115
+    costBuy: 40000
+
+  # === UFO Components (8x costSell) ===
+
+  - type: STR_UFO_POWER_SOURCE
+    costBuy: 2000000
+
+  - type: STR_UFO_NAVIGATION
+    costBuy: 640000
+
+  - type: STR_UFO_CONSTRUCTION
+    costBuy: 160000
+
+  # === Research Artifacts (3x costSell) ===
+
+  - type: STR_ALIEN_FOOD
+    costBuy: 15000
+
+  - type: STR_ALIEN_ENTERTAINMENT
+    costBuy: 60000
+
+  - type: STR_ALIEN_SURGERY
+    costBuy: 114000
+
+  - type: STR_EXAMINATION_ROOM
+    costBuy: 27000
+
+  - type: STR_ALIEN_HABITAT
+    costBuy: 300
+
+  - type: STR_ALIEN_REPRODUCTION
+    costBuy: 120000
