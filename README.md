@@ -16,7 +16,7 @@ A collection of mods for [OpenXcom Extended (OXCE)](https://github.com/MeridianO
 
 __Type:__ Economy | __Game:__ UFO Defense
 
-Alien weapons, materials, and artifacts available for purchase at steep black market prices. Skip the research grind — if you can afford it.
+Alien weapons, materials, and artifacts available for purchase at steep black market prices. Skip the research grind - if you can afford it.
 
 | Tier | Markup | Examples |
 |------|--------|---------|
@@ -36,11 +36,11 @@ A fully kitted Heavy Plasma soldier costs ~1M credits. Early-game monthly fundin
 
 __Type:__ Base Defense | __Game:__ UFO Defense | __Requires:__ OXCE 7.0+
 
-Base defense overhaul — makes base layout a strategic decision from month 3. Five pillars:
+Base defense overhaul - makes base layout a strategic decision from month 3. Five pillars:
 
 __1. Earlier retaliations:__ Alien retaliations start at month 3 on all difficulties (vanilla: month 10-14). You need defenses early.
 
-__2. Cheaper-but-weaker defenses:__ All defense facilities cost 50% less to build, but hit ratio is reduced by 10 points. You need more of them — layering matters.
+__2. Cheaper-but-weaker defenses:__ All defense facilities cost 50% less to build, but hit ratio is reduced by 10 points. You need more of them - layering matters.
 
 __3. Expensive hangars:__ Build cost tripled (200K → 600K), maintenance doubled (25K → 50K). Forces hard choices between interception capacity and base defense.
 
@@ -57,7 +57,7 @@ __5. Specialized facilities:__ 7 new facilities gated by base infrastructure inv
 
 | Facility | Tier | Requires | Key Stats |
 |----------|------|----------|-----------|
-| Training Barracks | Early | — | 10 training slots, 20 personnel |
+| Training Barracks | Early | - | 10 training slots, 20 personnel |
 | Field Hospital | Early | Living Quarters | Faster wound recovery (+1.0 abs, +0.5 rel) |
 | Ammunition Depot | Mid | Workshop | 75 storage, costs 5 alien alloys |
 | Command Bunker | Mid | Any defense + Mind Shield | +200 passive defense, 1 per base |
@@ -65,15 +65,15 @@ __5. Specialized facilities:__ 7 new facilities gated by base infrastructure inv
 | Fortress Shield Generator | Late | Grav Shield + hardened defense | +500 defense, draws enemy fire, costs 30 elerium + 50 alloys |
 | Psi-Defense Array | Late | Mind Shield + Psi Lab | 200 mind power, costs 15 elerium |
 
-- __Training Barracks__ — A military training facility with a gym, firing range, and tactical simulation room. Soldiers stationed here improve between missions. Cheaper and smaller than Living Quarters.
-- __Field Hospital__ — Rapid treatment facility for combat injuries. Soldiers recover from wounds significantly faster. Essential once retaliations start injuring your team at month 3.
-- __Ammunition Depot__ — Blast-resistant ordnance storage built with alien alloys. Provides extra storage and enables sustained defensive operations. Required by the Workshop in base.
-- __Command Bunker__ — Hardened command center that coordinates base defense. Doesn't fire at UFOs directly — instead provides a passive defense bonus through improved response times. One per base.
-- __Interrogation Wing__ — Expanded alien containment with specialized interrogation chambers. Holds 15 aliens (vs 10 in standard containment). Requires both containment and laboratory infrastructure.
-- __Fortress Shield Generator__ — The crown jewel. Generates a massive energy shield that absorbs incoming fire and draws enemy weapons away from critical facilities (via missileAttraction). Extremely expensive: 30 elerium + 50 alloys. One per base.
-- __Psi-Defense Array__ — A network of psionic amplifiers projecting a psychic barrier across the base. Far more powerful than a standard Mind Shield (200 vs vanilla's mind power). Late-game counter to Ethereal retaliations.
+- __Training Barracks__ - A military training facility with a gym, firing range, and tactical simulation room. Soldiers stationed here improve between missions. Cheaper and smaller than Living Quarters.
+- __Field Hospital__ - Rapid treatment facility for combat injuries. Soldiers recover from wounds significantly faster. Essential once retaliations start injuring your team at month 3.
+- __Ammunition Depot__ - Blast-resistant ordnance storage built with alien alloys. Provides extra storage and enables sustained defensive operations. Required by the Workshop in base.
+- __Command Bunker__ - Hardened command center that coordinates base defense. Doesn't fire at UFOs directly - instead provides a passive defense bonus through improved response times. One per base.
+- __Interrogation Wing__ - Expanded alien containment with specialized interrogation chambers. Holds 15 aliens (vs 10 in standard containment). Requires both containment and laboratory infrastructure.
+- __Fortress Shield Generator__ - The crown jewel. Generates a massive energy shield that absorbs incoming fire and draws enemy weapons away from critical facilities (via missileAttraction). Extremely expensive: 30 elerium + 50 alloys. One per base.
+- __Psi-Defense Array__ - A network of psionic amplifiers projecting a psychic barrier across the base. Far more powerful than a standard Mind Shield (200 vs vanilla's mind power). Late-game counter to Ethereal retaliations.
 
-The Grav Shield is the __linchpin__ — in vanilla it's a luxury, here it's the gateway to serious base defense. Combined with the new facility tree, base building becomes a genuine strategic puzzle.
+The Grav Shield is the __linchpin__ - in vanilla it's a luxury, here it's the gateway to serious base defense. Combined with the new facility tree, base building becomes a genuine strategic puzzle.
 
 > Folder: [`fortress-xcom/`](fortress-xcom/)
 
@@ -84,10 +84,10 @@ The Grav Shield is the __linchpin__ — in vanilla it's a luxury, here it's the 
 3. Launch the game → Options → Mods
 4. Enable the mod and click OK
 
-Mods are safe to enable mid-campaign. They override vanilla values via OXCE's merge system — only changed fields are affected.
+Mods are safe to enable mid-campaign. They override vanilla values via OXCE's merge system - only changed fields are affected.
 
 ## About
 
-These mods are YAML-only ruleset overrides — no custom sprites, sounds, or maps. They're designed to change how the game __feels__ without adding new content. All values are derived from actual vanilla stats fetched from the [OXCE repo](https://github.com/MeridianOXC/OpenXcom).
+These mods are YAML-only ruleset overrides - no custom sprites, sounds, or maps. They're designed to change how the game __feels__ without adding new content. All values are derived from actual vanilla stats fetched from the [OXCE repo](https://github.com/MeridianOXC/OpenXcom).
 
 Generated with [oxce-modgen](https://github.com/menottim/oxce-modgen), a Claude Code skill for generating OXCE mods from natural language.
