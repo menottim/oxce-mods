@@ -65,6 +65,14 @@ __5. Specialized facilities:__ 7 new facilities gated by base infrastructure inv
 | Fortress Shield Generator | Late | Grav Shield + hardened defense | +500 defense, draws enemy fire, costs 30 elerium + 50 alloys |
 | Psi-Defense Array | Late | Mind Shield + Psi Lab | 200 mind power, costs 15 elerium |
 
+- __Training Barracks__ — A military training facility with a gym, firing range, and tactical simulation room. Soldiers stationed here improve between missions. Cheaper and smaller than Living Quarters.
+- __Field Hospital__ — Rapid treatment facility for combat injuries. Soldiers recover from wounds significantly faster. Essential once retaliations start injuring your team at month 3.
+- __Ammunition Depot__ — Blast-resistant ordnance storage built with alien alloys. Provides extra storage and enables sustained defensive operations. Required by the Workshop in base.
+- __Command Bunker__ — Hardened command center that coordinates base defense. Doesn't fire at UFOs directly — instead provides a passive defense bonus through improved response times. One per base.
+- __Interrogation Wing__ — Expanded alien containment with specialized interrogation chambers. Holds 15 aliens (vs 10 in standard containment). Requires both containment and laboratory infrastructure.
+- __Fortress Shield Generator__ — The crown jewel. Generates a massive energy shield that absorbs incoming fire and draws enemy weapons away from critical facilities (via missileAttraction). Extremely expensive: 30 elerium + 50 alloys. One per base.
+- __Psi-Defense Array__ — A network of psionic amplifiers projecting a psychic barrier across the base. Far more powerful than a standard Mind Shield (200 vs vanilla's mind power). Late-game counter to Ethereal retaliations.
+
 The Grav Shield is the __linchpin__ — in vanilla it's a luxury, here it's the gateway to serious base defense. Combined with the new facility tree, base building becomes a genuine strategic puzzle.
 
 > Folder: [`fortress-xcom/`](fortress-xcom/)
